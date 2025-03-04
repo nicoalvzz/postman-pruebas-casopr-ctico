@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "66d068a5-b12d-4277-8f00-f58c1af863cf",
+		"name": "another",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41542908"
+	},
+	"item": [
+		{
+			"name": "https://api.taekwondo4all.cat/vuelos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Código de respuesta es 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Respuesta es un array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cada vuelo tiene los campos esperados\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    jsonData.forEach(vuelo => {\r",
+							"        pm.expect(vuelo).to.have.property(\"id\");\r",
+							"        pm.expect(vuelo).to.have.property(\"aerolinea\");\r",
+							"        pm.expect(vuelo).to.have.property(\"numero_vuelo\");\r",
+							"        pm.expect(vuelo).to.have.property(\"origen\");\r",
+							"        pm.expect(vuelo).to.have.property(\"destino\");\r",
+							"        pm.expect(vuelo).to.have.property(\"fecha_salida\");\r",
+							"        pm.expect(vuelo).to.have.property(\"hora_salida\");\r",
+							"        pm.expect(vuelo).to.have.property(\"fecha_llegada\");\r",
+							"        pm.expect(vuelo).to.have.property(\"hora_llegada\");\r",
+							"        pm.expect(vuelo).to.have.property(\"estado\");\r",
+							"    });\r",
+							"});\r",
+							"pm.test(\"1. Código de estado es 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2. Respuesta es un array\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3. La respuesta contiene al menos 1 vuelo\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"4. Cada vuelo tiene campo 'aerolinea'\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    jsonData.forEach(vuelo => pm.expect(vuelo).to.have.property(\"aerolinea\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5. Los vuelos contienen fechas de salida válidas\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    jsonData.forEach(vuelo => pm.expect(new Date(vuelo.fecha_salida)).to.not.be.NaN);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"6. Tiempo de respuesta menor a 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.taekwondo4all.cat/vuelos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"taekwondo4all",
+						"cat"
+					],
+					"path": [
+						"vuelos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
